@@ -1,0 +1,8 @@
+node_modules
+.env
+dist
+tmp/*
+!tmp/.gitkeep
+.wwebjs_auth
+*.bat
+!spec/*.bat
