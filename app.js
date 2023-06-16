@@ -18,7 +18,7 @@ const MockAdapter = require('@bot-whatsapp/database/mock')
 
 const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(['📄 Aquí tenemos el flujo secundario'])
 
-const flowDocs = addKeyword(['doc', 'documentacion', 'documentación', 'internet', 'Internet']).addAnswer(
+const flowInternet = addKeyword(['inter', 'inernet', 'intern', 'internet', 'Internet']).addAnswer(
     [
         '📄 Aquí encontras las documentación recuerda que puedes mejorarla',
         'ver opciones',
@@ -29,10 +29,10 @@ const flowDocs = addKeyword(['doc', 'documentacion', 'documentación', 'internet
     [flowSecundario]
 )
 
-const flowTuto = addKeyword(['tutorial', 'tuto']).addAnswer(
+const flowEquipos = addKeyword(['equipos', 'Equipos', 'EQUIPOS', 'equips']).addAnswer(
     [
-        '🙌 Aquí encontras un ejemplo rapido',
-        'https://bot-whatsapp.netlify.app/docs/example/',
+        '🙌 Aquí te muestro los que más se venden',
+        'Ejemplos',
         '\n*2* Para siguiente paso.',
     ],
     null,
@@ -40,12 +40,12 @@ const flowTuto = addKeyword(['tutorial', 'tuto']).addAnswer(
     [flowSecundario]
 )
 
-const flowGracias = addKeyword(['gracias', 'grac']).addAnswer(
+const flowPlanes = addKeyword(['plan', 'planes', 'plans', 'Planes', 'PLANES']).addAnswer(
     [
-        '🚀 Puedes aportar tu granito de arena a este proyecto',
-        '[*opencollective*] https://opencollective.com/bot-whatsapp',
-        '[*buymeacoffee*] https://www.buymeacoffee.com/leifermendez',
-        '[*patreon*] https://www.patreon.com/leifermendez',
+        '🚀 Aqui te muestro los planes disponibles',
+        '[*opencollective*] ',
+        '[*buymeacoffee*] ',
+        '[*patreon*] ',
         '\n*2* Para siguiente paso.',
     ],
     null,
@@ -53,8 +53,8 @@ const flowGracias = addKeyword(['gracias', 'grac']).addAnswer(
     [flowSecundario]
 )
 
-const flowDiscord = addKeyword(['discord']).addAnswer(
-    ['🤪 Únete al discord', 'https://link.codigoencasa.com/DISCORD', '\n*2* Para siguiente paso.'],
+const flowGracias = addKeyword(['gracias', 'Gracias', 'dale muchas gracias', 'Muchas Gracias']).addAnswer(
+    ['🤪 No hay de que, cuando gustes', 'visita mi sitio web', '\n*2* Para siguiente paso.'],
     null,
     null,
     [flowSecundario]
@@ -71,7 +71,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
         ],
         null,
         null,
-        [flowDocs, flowGracias, flowTuto, flowDiscord]
+        [flowInternet, flowPlanes, flowEquipos, flowGracias]
     )
 
 const main = async () => {
