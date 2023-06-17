@@ -60,7 +60,7 @@ const flowGracias = addKeyword(['gracias', 'Gracias', 'dale muchas gracias', 'Mu
     [flowSecundario]
 )
 
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
+const flowPrincipal = addKeyword(['hola', 'ole', 'alo', 'Buenas', 'Hola que tal?', 'Buen día', 'Buenas tardes', 'Buenas noches', 'Buenos días', 'Buen dia', 'Buen día'])
     .addAnswer('🙌 Hola que tal? mi nombe es Alejandro tu asesor de ventas Claro!')
     .addAnswer(
         [
