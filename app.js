@@ -16,18 +16,63 @@ const MockAdapter = require("@bot-whatsapp/database/mock");
  * Primero declaras los submenus 1.1 y 2.1, luego el 1 y 2 y al final el principal.
  */
 
+
+
 const flowSecundario = addKeyword(["2", "siguiente"])
-  .addAnswer("📄 Aquí tenemos el flujo secundario", {
-    media: "https://i.imgur.com/0HpzsEm.png",
+  .addAnswer(["FlowSecundario"])
+  ;
+
+const flowGracias = addKeyword([
+  "gracias",
+  "Gracias",
+  "dale muchas gracias",
+  "Muchas Gracias",
+]).addAnswer(
+  ["🤖 No hay de que, cuando gustes"],
+  null,
+  null,
+  [flowSecundario]
+);
+
+const flowAtc = addKeyword([
+  "Si",
+  "si",
+]).addAnswer(
+  ["🤖 Estoy transfiriendo a un compañero tu solicitud, favor aguarda un momento que en breve se comunica contigo."],
+  null,
+  null,
+  [flowGracias]
+);
+
+const flowSecundarioMotorola = addKeyword(["1", "motorola"])
+  .addAnswer(["🤖 Estos son los equipos disponibles de la marca Motorola:"])
+  .addAnswer("Opcion 1", {
+    media: "./src/img/celulares/motorola/1.png",
   })
   .addAnswer("Opcion dos", {
-    media: "https://i.imgur.com/0HpzsEm.png",
+    media: "./src/img/celulares/motorola/2.png",
   })
   .addAnswer("Opcion tres", {
-    media: "https://i.imgur.com/0HpzsEm.png",
-  });
+    media: "./src/img/celulares/motorola/3.png",
+  }, null, [flowGracias])
+  .addAnswer("🤖 Si deseas solicitar un equipo escribe Si y te transfiero a un compañero para que te tome el pedido.", null, null, [flowAtc, flowGracias])
+  ;
 
-const flowInternet = addKeyword(["inter", "inernet", "intern", "internet", "Internet"]).addAnswer(
+const flowSecundarioSamsung = addKeyword(["2", "samsung"])
+  .addAnswer(["🤖 Estos son los equipos disponibles de la marca Samsung:"])
+  .addAnswer("Opcion 1", {
+    media: "./src/img/celulares/samsung/1.png",
+  })
+  .addAnswer("Opcion dos", {
+    media: "./src/img/celulares/samsung/2.png",
+  })
+  .addAnswer("Opcion tres", {
+    media: "./src/img/celulares/samsung/3.png",
+  }, null, [flowGracias])
+  .addAnswer("🤖 Si deseas solicitar un equipo escribe Si y te transfiero a un compañero para que te tome el pedido.", null, null, [flowAtc, flowGracias])
+  ;
+
+const flowInternet = addKeyword(["inter", "inernet", "intern", "internet", "Internet", "1"]).addAnswer(
   [
     "📄 Aquí encontras las documentación recuerda que puedes mejorarla",
     "ver opciones",
@@ -38,14 +83,7 @@ const flowInternet = addKeyword(["inter", "inernet", "intern", "internet", "Inte
   [flowSecundario]
 );
 
-const flowEquipos = addKeyword(["equipos", "Equipos", "EQUIPOS", "equips"]).addAnswer(
-  ["🙌 Aquí te muestro los que más se venden", "Ejemplos", "\n*2* Para siguiente paso."],
-  null,
-  null,
-  [flowSecundario]
-);
-
-const flowPlanes = addKeyword(["plan", "planes", "plans", "Planes", "PLANES"]).addAnswer(
+const flowPlanes = addKeyword(["plan", "planes", "plans", "Planes", "PLANES", "2"]).addAnswer(
   [
     "🚀 Aqui te muestro los planes disponibles",
     "[*opencollective*] ",
@@ -58,16 +96,14 @@ const flowPlanes = addKeyword(["plan", "planes", "plans", "Planes", "PLANES"]).a
   [flowSecundario]
 );
 
-const flowGracias = addKeyword([
-  "gracias",
-  "Gracias",
-  "dale muchas gracias",
-  "Muchas Gracias",
-]).addAnswer(
-  ["🤪 No hay de que, cuando gustes", "visita mi sitio web", "\n*2* Para siguiente paso."],
+const flowEquipos = addKeyword(["equipos", "Equipos", "EQUIPOS", "equips", "3"]).addAnswer(
+  ["🤖 Elige una marca",
+    "👉 *1 Motorola*",
+    "👉 *2 Samsung*",
+    "🤖 Escribe el número de la opción que elegiste."],
   null,
   null,
-  [flowSecundario]
+  [flowSecundarioMotorola, flowSecundarioSamsung]
 );
 
 const flowPrincipal = addKeyword([
@@ -83,13 +119,14 @@ const flowPrincipal = addKeyword([
   "Buen dia",
   "Buen día",
 ])
-  .addAnswer("🙌 Hola que tal? mi nombe es Alejandro tu asesor de ventas Claro!")
+  .addAnswer("🤖 Hola que tal? mi nombe es BotClaro tu asesor de ventas Claro!")
   .addAnswer(
     [
-      "En qué puedo ayudarte?",
-      "👉 *Internet* para ver todos los planes de internet",
-      "👉 *Planes*  para ver todos los planes de telefonía",
-      "👉 *Equipos* para ver opiones de equipo",
+      "🤖 En qué puedo ayudarte?",
+      "👉 *1 Internet* para ver todos los planes de internet",
+      "👉 *2 Planes*  para ver todos los planes de telefonía",
+      "👉 *3 Equipos* para ver opiones de equipo",
+      "🤖 Escribe el número de la opción que elegiste."
     ],
     null,
     null,
