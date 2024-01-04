@@ -14,7 +14,7 @@
         "@bot-whatsapp/database": "latest",
         "@bot-whatsapp/provider": "latest",
         "@bot-whatsapp/portal": "latest",
-        "whatsapp-web.js": "1.21.0"
+        "whatsapp-web.js": "1.23.0"
     },
     "author": "",
     "license": "ISC"
